@@ -1,0 +1,98 @@
+package Funcion_TryCatch;
+
+import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import Funcion_TryCatch.Funcion_TryCatch;
+
+
+public class Funcion_TryCatch {
+
+    static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));//
+    
+     //FUNCION DE 1_2 (DOUBLES PARA HACER LAS PRUEBAS DE FUNCIONES, SUMAR E INTRODUCIR NOTAS)
+    public static double pideDouble(int min,int max, String texto) throws IOException
+	{	
+		double valor = 0;
+        boolean numCorrecto;
+
+		do {    //PEDIR VALOR POR RANGO ESTABLECIDO (0-10 EN ESTE CASO)
+
+            do {    //PEDIR VALOR SIN ACEPTAR DATOS INCORRECTOS POR FORMATO
+
+            numCorrecto = true;
+
+            // mensaje peticion (texto de la creació de la función en main, pero ahora está en menú)
+        
+            System.out.print(texto);
+
+                /*CONTROL ERRORES TRY-CATCH
+                TRY= INTENTA, aquí marcaremos donde queremos que INTENTE el arreglo
+                Normalmente donde el usuario interactue, en este caso, cuando le pedimos
+                que nos introduzca un double
+                Le decimos al programa, INTENTA que sea SOLAMENTE DOUBLE*/
+        
+        try{
+                valor=Double.parseDouble(br.readLine()); 
+                /*CATCH= ARREGLAR, Si detecta un error (dato no double en este caso)
+                Dentro del catch irá el intento de arreglar el error
+                Es decir, SIEMPRE QUE NO SEA UN DATO DOUBLE, QUE NOS REPTIA LA PETICIÓN DEL DATO */
+            }catch(Exception e)
+                {
+                    System.out.println("error, dato incorrecto ");
+                    numCorrecto = false;
+                }
+
+            }while(numCorrecto == false); //COMO SIEMPRE DENTRO DEL WHILE, PONDREMOS LO QUE NO QUEREMOS
+                      
+            if((valor<min)||(valor>max)){
+                System.out.println("Nota incorrecta, vuelva a introducir una nota");
+            }
+
+        //WHILE PARA COMPROBAR VALOR ENTRE RANGOS 0-10
+		}while((valor<min)||(valor>max));
+            // devolver valor double
+            return valor;	
+	}
+
+
+     //FUNCION DE 1_2 (ENTEROS PARA ESCOGER UNA OPCION DEL SWITCH)
+     public static int pideEntero(int min,int max, String texto) throws IOException
+     {
+         
+         int opcion = 0;
+         boolean numCorrecto;
+ 
+         do {    
+             do {    
+ 
+             numCorrecto = true;
+ 
+             // mensaje peticion (texto de la creació de la función en main, pero ahora está en menú)
+         
+             System.out.print(texto);
+         
+         try{
+                 opcion=Integer.parseInt(br.readLine()); 
+                 
+             }catch(Exception e)
+                 {
+                     System.out.println("error ");
+                     numCorrecto = false;
+                 }
+ 
+             }while(numCorrecto == false); //COMO SIEMPRE DENTRO DEL WHILE, PONDREMOS LO QUE NO QUEREMOS
+             
+             if((opcion<min)||(opcion>max)){
+                 System.out.println("Opción incorrecta, vuelva a introducir una opción");
+             }
+             
+         //WHILE PARA COMPROBAR VALOR ENTRE RANGOS 0-10
+         }while((opcion<min)||(opcion>max));
+             // devolver valor double
+             return opcion;	
+     }
+
+
+}
