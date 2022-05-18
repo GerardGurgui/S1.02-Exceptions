@@ -1,5 +1,7 @@
 package n2exercici1;
 
+// package casa package Backend.Sprint1.S1_02.n1exercici1;
+
 public class App {
     
     public static void main(String[] args) {
@@ -12,18 +14,32 @@ public class App {
         Producte producte2 = new Producte("tele", 150);
         
         
-        vendas.afegirProductes(producte1);
-        vendas.afegirProductes(producte2);
-       
-       
-        double total = vendas.calcularTotal();
-        System.out.println("total llista desde variable " +total);
+//        vendas.afegirProductes(producte1);
+//        vendas.afegirProductes(producte2);
         
         
-        System.out.println("producte 1 " +producte1.toString());
-        System.out.println("producte 2 " +producte2.toString());
+        /*
+        Dins del try validem el metode on pot haveri el error,
+        si es aixi, el captura guardantlo a una variable, on podem
+        mostrar el missatge que hem escrit al metode i crear el error 
+        amb printStackTrace
+        
+        */
+        try {
+            
+            vendas.calcularTotal();
+            
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+            
+            e.printStackTrace();
+            
+        }
         
         
     }
     
+    
 }
+
