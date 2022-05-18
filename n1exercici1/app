@@ -1,33 +1,29 @@
 package n2exercici1;
 
-public class Telefon {
-	
-	private String marca;
-	private String model;
-	
-	
-	public Telefon(String marca, String model) {
-		
-		this.marca = marca;
-		this.model = model;
-		
-	}
-	
-	
-	
-	public void trucar(String numero) {
-		
-		System.out.println("El número que estás trucant és: " +numero);
-		
-	}
-
-
-
-	@Override
-	public String toString() {
-		return "Telefon [marca=" + marca + ", model=" + model + "]";
-	}
-
-	
-	
+public class App {
+    
+    public static void main(String[] args) {
+        
+        
+        Venda vendas = new Venda();
+        
+        
+        Producte producte1 = new Producte("Movil", 50);
+        Producte producte2 = new Producte("tele", 150);
+        
+        
+        vendas.afegirProductes(producte1);
+        vendas.afegirProductes(producte2);
+       
+       
+        double total = vendas.calcularTotal();
+        System.out.println("total llista desde variable " +total);
+        
+        
+        System.out.println("producte 1 " +producte1.toString());
+        System.out.println("producte 2 " +producte2.toString());
+        
+        
+    }
+    
 }
