@@ -1,11 +1,13 @@
 package Backend.Sprint1.S1_02.n2exercici1;
 
 
+package s1_02.n2exercici1;
+
 import java.util.Scanner;
 
 public class App {
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Entrada{
         
         
         Scanner instanciaScanner = new Scanner(System.in);
@@ -13,104 +15,97 @@ public class App {
         
         
         int valorInt = llegirInt("Introdueixi un número enter", instanciaScanner);
-        System.out.println("Dada int introduida " +valorInt);
+
+              
+         
         
     }
     
-//    
-//    public static String llegirString(String missatge, Scanner instanciaScanner) {
-//        
-//        String provaString;
-//        
-//        System.out.println(missatge);
-//        
-//        provaString = instanciaScanner.nextLine();
-//        
-//        
-//        
-//        if (instanciaScanner.getClass().getName().equals(provaString)) {
-//            
-//            System.out.println("Dato correcto");
-//            
-//            
-//        } else {
-//            
-//            
-//            try {
-//
-//                throw new Entrada();
-//
-//            } catch (Exception e) {
-//
-//                System.out.println("Dato incorrecto");
-//                e.printStackTrace();
-//
-//            }
-//          
-//            
-//        }
-//
-//            
-//        
-//        
-//            return provaString;
-//        }
-//            
-//   
-//    
-//   
     
-    public static int llegirInt(String missatge, Scanner instanciaScanner){
+    
+    
+
+    
+    public static int llegirInt(String missatge, Scanner instanciaScanner) throws Entrada {
         
         int valor = 0;
-       
+        boolean sonIguales = true;
         
-        System.out.println(missatge);
-        
-        valor = instanciaScanner.nextInt();
-        
-        if () {
+        do {            
             
-            System.out.println("Dada correcte");
             
-        } else {
+            System.out.println(missatge);
             
-            System.out.println("Dada incorrecte");
-        }
+            valor = instanciaScanner.nextInt();
+            
+            if (!((Object) valor instanceof Integer)) {
+                
+                try {
+                    
+                    throw new Entrada();
+                    
+                } catch (Exception e) {
+                    
+                    System.out.println("Dada incorrecte");
+                    e.printStackTrace();
+                }
+                
+            } else {
+                
+                System.out.println("Dada correcte");
+            }
+            
+               
+            
+        } while (!((Object) valor instanceof Integer));
         
         
-        
-        
-        
-        
-        
-        
-        
-        
-//        try {
-//            
-//            valor = instanciaScanner.nextInt();
-//            System.out.println("Dada correcte");
-//            
-//            
-//        } catch (Exception e) {
-//            
-//            System.out.println("Dada incorrecte");
-//            e.printStackTrace();
-//            
-//        }
-//        
         return valor;
         
     }
     
+
+    public static double llegirDouble(String missatge, Scanner instanciaScanner) throws Entrada{
+
+        
+        double valor;
+        boolean sonIguales = true;
+        
+       
+        do {            
+            
+
+            System.out.println(missatge);
+
+            valor = instanciaScanner.nextDouble();
+
+                if ((Object)valor instanceof Double) {
+
+                    System.out.println("Dada correcte");
+                    
+
+                } else {
+
+                    sonIguales = false;
+                    throw new Entrada("Dada incorrecte, torni a introduir una dada");
+                    
+                }
+        
+            
+        } while (sonIguales == false);
+        
+        
+  
+        return valor;
+        
+    }
     
-    
-    
-    
-    
-    
-    
-    
-    
+
+
 }
+    
+    
+    
+    
+    
+
