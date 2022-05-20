@@ -3,6 +3,9 @@ package Backend.Sprint1.S1_02.n2exercici1;
 
 package s1_02.n2exercici1;
 
+package Backend.Sprint1.S1_02.n2exercici1;
+
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
@@ -12,98 +15,283 @@ public class App {
         
         Scanner instanciaScanner = new Scanner(System.in);
         
+//        //METODES-InputMismatchException
+//            //llegirByte
+//        byte valorByte = llegirByte("Introdueixi un número byte", instanciaScanner);
+//        System.out.println("Valor del byte " +valorByte);
+//        
+//            //llegirInt
+//        int valorInt = llegirInt("Introdueixi un número enter", instanciaScanner);
+//        System.out.println("valor de int " +valorInt);
+//        
+//            //llegirFloat
+//        float valorFloat = llegirFloat("Introdueixi un número flotant", instanciaScanner);
+//        System.out.println("valor de float " +valorFloat);
+//       
+//            //llegirDouble
+//        double valorDouble = llegirDouble("Introdueixi un número decimal", instanciaScanner);
+//        System.out.println("Valor de double " +valorDouble);
+//        
         
-        
-        int valorInt = llegirInt("Introdueixi un número enter", instanciaScanner);
 
+        //METODES-Exception
+            //llegirChar
+        char valorChar = llegirChar("Introdueixi un sol cáracter", instanciaScanner);
+        System.out.println("Valor del carácter " +valorChar);
+            
+            //llegirString
+        instanciaScanner.nextLine();
+        String valorString = llegirString("Introdueixi una cadena de carácters", instanciaScanner);
+        System.out.println("Valor de la cadena " +valorString);
+            
+            //llegirBoolean
+        instanciaScanner.nextLine();
+        boolean valorBoolean = llegirSiNo("Introdueixi S (true) o N (false)", instanciaScanner);
+        System.out.println("Valor de boolean " +valorBoolean);
+            
+    }
+    
+    
+    //METODES-InputMismatchException:
+        //BYTE
+    
+    public static byte llegirByte(String missatge, Scanner instanciaScanner) throws Entrada{
+        
+        byte valor = 0;
+        boolean capturaError;
+        
+        do {            
+            
+            try {
+                
+                System.out.println(missatge);
+                valor = instanciaScanner.nextByte();
+                capturaError = false;
+                
+            } catch (InputMismatchException e) {
+                
+                System.out.println("Dada incorrecte, has d'introduir un número byte");
+                instanciaScanner.next(); //evitar bucle infinit
+                capturaError = true;
+                
+            }
               
-         
+        } while (capturaError == true);
+        
+        return valor;
         
     }
     
     
-    
-    
-
+        //INT
     
     public static int llegirInt(String missatge, Scanner instanciaScanner) throws Entrada {
         
         int valor = 0;
-        boolean sonIguales = true;
+        boolean capturaError;
         
         do {            
             
-            
-            System.out.println(missatge);
-            
-            valor = instanciaScanner.nextInt();
-            
-            if (!((Object) valor instanceof Integer)) {
+            try {
                 
-                try {
-                    
-                    throw new Entrada();
-                    
-                } catch (Exception e) {
-                    
-                    System.out.println("Dada incorrecte");
-                    e.printStackTrace();
-                }
+                System.out.println(missatge);
+                valor = instanciaScanner.nextInt();
+                capturaError = false;
                 
-            } else {
+            } catch (InputMismatchException e) {
                 
-                System.out.println("Dada correcte");
+                System.out.println("Dada incorrecte, has d'introduir un número enter");
+                instanciaScanner.next(); //evitar bucle infinit
+                capturaError = true;
+                
             }
-            
-               
-            
-        } while (!((Object) valor instanceof Integer));
-        
+              
+        } while (capturaError == true);
         
         return valor;
         
     }
     
+    
+    
+        //FLOAT
+    
+    public static float llegirFloat(String missatge, Scanner instanciaScanner) throws Entrada {
+        
+        float valor = 0;
+        boolean capturaError;
+        
+        do {            
+            
+            try {
+                
+                System.out.println(missatge);
+                valor = instanciaScanner.nextFloat();
+                capturaError = false;
+                
+            } catch (InputMismatchException e) {
+                
+                System.out.println("Dada incorrecte, has d'introduir un número flotant");
+                instanciaScanner.next(); //evitar bucle infinit
+                capturaError = true;
+                
+            }
+              
+        } while (capturaError == true);
+        
+        return valor;
+        
+    }
+    
+    
+    
+        //DOUBLE
 
     public static double llegirDouble(String missatge, Scanner instanciaScanner) throws Entrada{
 
         
-        double valor;
-        boolean sonIguales = true;
+        double valor = 0;
+        boolean capturaError;
         
-       
         do {            
             
-
-            System.out.println(missatge);
-
-            valor = instanciaScanner.nextDouble();
-
-                if ((Object)valor instanceof Double) {
-
-                    System.out.println("Dada correcte");
-                    
-
-                } else {
-
-                    sonIguales = false;
-                    throw new Entrada("Dada incorrecte, torni a introduir una dada");
-                    
-                }
+            try {
+                
+                System.out.println(missatge);
+                valor = instanciaScanner.nextDouble();
+                capturaError = false;
+                
+                
+            } catch (InputMismatchException e) {
+                
+                System.out.println("Dada incorrecte, has d'introduir un número decimal");
+                instanciaScanner.next(); //evitar bucle infinit
+                capturaError = true;
+                
+            }
+              
+        } while (capturaError == true);
         
-            
-        } while (sonIguales == false);
-        
-        
-  
         return valor;
         
     }
     
+    
+    
+    //METODES-Exception
+        //Char
+    
+    public static char llegirChar(String missatge, Scanner instanciaScanner) throws Entrada{
 
+        
+        char valor = 'a';
+        boolean capturaError;
+        
+        do {            
+            
+            try {
+                
+                System.out.println(missatge);
+                valor = instanciaScanner.next().charAt(0);
+                capturaError = false;
+                
+                
+            } catch (Exception e) {
+                
+                System.out.println("Dada incorrecte, has d'introduir un sol caracter");
+                instanciaScanner.next(); //evitar bucle infinit
+                capturaError = true;
+                
+            }
+              
+        } while (capturaError == true);
+        
+        return valor;
+        
+    }
+    
+    
+        //String
+    
+    public static String llegirString(String missatge, Scanner instanciaScanner) throws Entrada{
+
+        
+        String valor = "";
+        boolean capturaError;
+        
+        do {            
+            
+            try {
+                
+                System.out.println(missatge);
+                valor = instanciaScanner.nextLine();
+                capturaError = false;
+                
+                
+            } catch (Exception e) {
+                
+                System.out.println("Dada incorrecte, has d'introduir una cadena de carácters");
+                instanciaScanner.next(); //evitar bucle infinit
+                capturaError = true;
+                
+            }
+              
+        } while (capturaError == true);
+        
+        return valor;
+        
+    }
+    
+    
+        //Boolean
+    
+    public static boolean llegirSiNo(String missatge, Scanner instanciaScanner) throws Entrada{
+        
+        String valor = "";
+        
+        boolean comprobar = false;
+        
+        boolean capturaError;
+        
+        do {            
+            
+            try {
+                
+                System.out.println(missatge);
+                valor = instanciaScanner.nextLine();
+                capturaError = false;
+                 
+            } catch (Exception e) {
+                
+                System.out.println("Dada incorrecte, has d'introduir o S o N");
+                instanciaScanner.next(); //evitar bucle infinit
+                capturaError = true;
+                
+            }
+            
+        } while (capturaError == true);
+        
+        
+        if (valor.equals("s")) {
+                    
+            comprobar = true;
+
+        }else if (valor.equals("n")){
+
+            comprobar = false;
+
+        } 
+        
+        
+        return comprobar;
+        
+    }
+    
+    
 
 }
     
+
     
     
     
