@@ -5,7 +5,8 @@ package S1_02.n2exercici1;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Entrada extends Exception{
+
+public class Entrada extends Exception  {
     
     static Scanner instanciaScanner = new Scanner(System.in);
     
@@ -27,11 +28,11 @@ public class Entrada extends Exception{
                 valor = instanciaScanner.nextByte();
                 capturaError = false;
                 
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 
-                System.out.println("Dada incorrecte, has d'introduir un número byte");
+                System.out.println("Error de format, has d'introduir un número byte");
                 instanciaScanner.next(); //evitar bucle infinit
-                
+                capturaError = true;
                 
             }
               
@@ -57,11 +58,11 @@ public class Entrada extends Exception{
                 valor = instanciaScanner.nextInt();
                 capturaError = false;
                 
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 
-                System.out.println("Dada incorrecte, has d'introduir un número enter");
+                System.out.println("Error de format, has d'introduir un número enter");
                 instanciaScanner.next(); //evitar bucle infinit
-                
+                capturaError = true;
                 
             }
               
@@ -75,7 +76,7 @@ public class Entrada extends Exception{
     
         //FLOAT
     
-    public static float llegirFloat(String missatge) throws Entrada {
+    public static float llegirFloat(String missatge) {
         
         float valor = 0;
         boolean capturaError;
@@ -88,9 +89,9 @@ public class Entrada extends Exception{
                 valor = instanciaScanner.nextFloat();
                 capturaError = false;
                 
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 
-                System.out.println("Dada incorrecte, has d'introduir un número flotant");
+                System.out.println("Error de format, has d'introduir un número amb coma (flotant)");
                 instanciaScanner.next(); //evitar bucle infinit
                 capturaError = true;
                 
@@ -121,9 +122,9 @@ public class Entrada extends Exception{
                 capturaError = false;
                 
                 
-            } catch (InputMismatchException e) {
+            } catch (Exception e) {
                 
-                System.out.println("Dada incorrecte, has d'introduir un número decimal");
+                System.out.println("Error de format, has d'introduir un número decimal");
                 instanciaScanner.next(); //evitar bucle infinit
                 capturaError = true;
                 
@@ -138,26 +139,29 @@ public class Entrada extends Exception{
     
     
     
-    
     //METODES-Exception
         //Char
     
     public static char llegirChar(String missatge) throws Entrada{
 
+        Scanner input = new Scanner(System.in);
         
-        char valor = 'a';
-        boolean capturaError = false;
+        String prova;
+        int totalCadena = 0;
+        char charConversio = ' ';
+        
         
         do {            
             
             try {
                 
                 System.out.println(missatge);
-                valor = instanciaScanner.next().charAt(0);
-                capturaError = false;
+                prova = input.nextLine();   //Recollim les dades amb String per poder fer servir el length
+                totalCadena = prova.length();   //Obtenim el total de la cadena
+                charConversio = prova.charAt(0);
+                    
+            }catch (Exception e) {
                 
-                
-            } catch (Exception e) {
                 
                 System.out.println("Dada incorrecte, has d'introduir un sol caracter");
                 instanciaScanner.next(); //evitar bucle infinit
@@ -165,9 +169,9 @@ public class Entrada extends Exception{
                 
             }
               
-        } while (capturaError == true);
+        } while (totalCadena != 1);
         
-        return valor;
+       return charConversio;
         
     }
     
@@ -185,15 +189,16 @@ public class Entrada extends Exception{
             try {
                 
                 System.out.println(missatge);
+                instanciaScanner.next();
                 valor = instanciaScanner.nextLine();
-                capturaError = true;
+                capturaError = false;
                 
                 
             } catch (Exception e) {
                 
                 System.out.println("Dada incorrecte, has d'introduir una cadena de carácters");
                 instanciaScanner.next(); //evitar bucle infinit
-                
+                capturaError = true;
                 
             }
               
@@ -226,7 +231,7 @@ public class Entrada extends Exception{
                 
                 System.out.println("Dada incorrecte, has d'introduir o S o N");
                 instanciaScanner.next(); //evitar bucle infinit
-                
+                capturaError = true;
                 
             }
             
@@ -250,3 +255,4 @@ public class Entrada extends Exception{
     
     
 }
+
