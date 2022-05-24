@@ -4,167 +4,138 @@ package n1exercici1;
 
 import java.util.ArrayList;
 
-
 public class Venda {
 
     private ArrayList<Producte> llistaProductes;
     private double preuTotal;
-
-
+    
 
     public Venda() {
 
         llistaProductes = new ArrayList<Producte>();
 
     }
-
-
+    
 
     //GETTERS SETTERS
     public ArrayList<Producte> getLlistaProductEs() {
         return llistaProductes;
     }
 
-
-
     public void setLlistaProductEs(ArrayList<Producte> llistaProductEs) {
         this.llistaProductes = llistaProductEs;
     }
-
-
-
-
 
     public double getPreuTotal() {
         return preuTotal;
     }
 
-
-
-
     public void setPreuTotal(double preuTotal) {
         this.preuTotal = preuTotal;
     }
 
-
-
-
     //METODES
-    
-    
     public void afegirProductes(Producte producte) {
-        
-        
-            llistaProductes.add(producte);
-            
+
+        llistaProductes.add(producte);
+
     }
     
     
-    
-    
-    public int buscarProducte(String nom) throws Exception{
 
-     int posicioProducte = -1;
-     int i = 0;
-     boolean coincidencia = false;
-     
+    public int buscarProducte(String nom) throws Exception {
 
-     while(i < llistaProductes.size() && coincidencia == false){
+        int posicioProducte = -1;
+        int i = 0;
+        boolean coincidencia = false;
 
-         if (nom.equals(llistaProductes.get(i).getNom())) {
+        while (i < llistaProductes.size() && coincidencia == false) {
 
-             posicioProducte = i;
-             coincidencia = true;
+            if (nom.equals(llistaProductes.get(i).getNom())) {
 
-         }
+                posicioProducte = i;
+                coincidencia = true;
 
-         i++;
-     }
-     
-     
+            }
+
+            i++;
+        }
+
         try {
-            
+
             if (posicioProducte == -1) {
-                
+
                 throw new ArrayIndexOutOfBoundsException();
             }
-            
+
         } catch (Exception e) {
-            
-            e.printStackTrace(); 
+
+            e.printStackTrace();
         }
-     
-     
-     return posicioProducte;
-     
+
+        return posicioProducte;
+
     }
     
     
-    
-    public void mostrarProducte(String nom){
-        
-     
-     
-     int i = 0;
-     boolean coincidencia = false;
-     
 
-     while(i < llistaProductes.size() && coincidencia == false){
+    public void mostrarProducte(String nom) {
 
-         if (nom.equals(llistaProductes.get(i).getNom())) {
-             coincidencia = true;
+        int i = 0;
+        boolean coincidencia = false;
 
-         }
-         
-         i++;
-     }
-     
-     System.out.println(llistaProductes.get(i-1).toString());
-            
-        
+        while (i < llistaProductes.size() && coincidencia == false) {
+
+            if (nom.equals(llistaProductes.get(i).getNom())) {
+                coincidencia = true;
+
+            }
+
+            i++;
+        }
+
+        System.out.println(llistaProductes.get(i - 1).toString());
+
     }
     
     
-    public void mostrarProductes(){
-        
+
+    public void mostrarProductes() {
+
         for (int i = 0; i < llistaProductes.size(); i++) {
-            
+
             System.out.println(llistaProductes.get(i).toString());
-            
+
         }
- 
+
     }
 
-
-    
     /*Metode on volem comprobar si es genera un error personalitzat,
     dins de la condicio, en contes de imprimir un simple missatge, el que fem
     es crear un error del tipu que hem definit (amb el nom de la classe) i que 
     hereda de clase java Exception.
     important tambe despres dels parentesis del metode indicar-li que hi ha la posibilitat
     de que es produeixi un error (throws)
-    */
+     */
     
-
     public double calcularTotal() throws VendaBuidaException {
-        
-        
-        
-        if(llistaProductes.size() == 0) {
 
-            throw new VendaBuidaException("Per crear una venda primer has d’afegir productes");
+       
+            if (llistaProductes.size() == 0) {
 
-        } 
+                throw new VendaBuidaException("Per crear una venda primer has d’afegir productes");
 
-        
-        for(int i = 0; i <llistaProductes.size(); i++) {
+            }
 
-            preuTotal += llistaProductes.get(i).getPreu();	
-        }  
-     
+       
+        for (int i = 0; i < llistaProductes.size(); i++) {
 
-    return preuTotal;
+            preuTotal += llistaProductes.get(i).getPreu();
+        }
+
+        return preuTotal;
 
     }
 
 }
+
