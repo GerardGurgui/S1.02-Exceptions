@@ -6,11 +6,16 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
+package S1_02.n2exercici1;
+
+
+
+
 public class Entrada extends Exception  {
     
     
     
-    //METODES
+    //METODES-InputMismatchException:
         //BYTE
     
     public static byte llegirByte(String missatge) throws Entrada{
@@ -139,7 +144,7 @@ public class Entrada extends Exception  {
     
     
     
-    //METODES
+    //METODES-Exception
         //Char
     
     public static char llegirChar(String missatge) throws Entrada{
@@ -184,33 +189,36 @@ public class Entrada extends Exception  {
     public static String llegirString(String missatge) throws Entrada{
 
         
-        String valor = "";
-        boolean capturaError = false;
+        String cadena = "";
+        int totalCadena = 0;
+        
         
         do {            
             
             try {
                 
                 System.out.println(missatge);
-                App.input.nextLine();
-                valor = App.input.nextLine();
-                capturaError = false;
+                cadena = App.input.nextLine();   //Recollim les dades amb String per poder fer servir el length
+                totalCadena = cadena.length();   //Obtenim el total de la cadena
+               
+                //Evaluem que si la cadena es més gran de 1 caracter, ens crei el error
+                if(totalCadena <= 1){
+                    
+                    throw new Entrada(); 
+                }
                 
+            }catch (Exception e) {
                 
-            } catch (Exception e) {
-                
-                System.out.println("Dada incorrecte, has d'introduir una cadena de carácters");
-                App.input.next(); //evitar bucle infinit
-                capturaError = true;
+                System.out.println("Error de format, has d'introduir un sol caracter");
                 
             }
-              
-        } while (capturaError == true);
+            
+            
+        } while (totalCadena <= 1);
         
-        return valor;
+       return cadena;
         
     }
-    
     
         //Boolean
     
