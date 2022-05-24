@@ -5,7 +5,6 @@ package n1exercici1;
 import java.util.ArrayList;
 
 
-
 public class Venda {
 
     private ArrayList<Producte> llistaProductes;
@@ -53,8 +52,19 @@ public class Venda {
     //METODES
 
     public void afegirProductes(Producte producte) {
+        
+        try {
+            
+            llistaProductes.add(producte);
+            
+            throw new ArrayIndexOutOfBoundsException();
+            
+        } catch (Exception e) {
+            
+            e.printStackTrace();
+        }
 
-        llistaProductes.add(producte);
+        
     }
 
 
