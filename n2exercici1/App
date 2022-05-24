@@ -2,14 +2,14 @@ package Backend.Sprint1.S1_02.n2exercici1;
 
 package s1_02.n2exercici1;
 
+package S1_02.n2exercici1;
 
-import java.util.Scanner;
+
 
 public class App {
     
+    
     public static void main(String[] args) throws Entrada{
-        
-         Scanner instanciaScanner = new Scanner(System.in);
         
         
         //METODES-InputMismatchException
@@ -26,27 +26,37 @@ public class App {
         System.out.println("valor de float " +valorFloat);
        
             //llegirDouble
+        
         double valorDouble = Entrada.llegirDouble("Introdueixi un número decimal");
         System.out.println("Valor de double " +valorDouble);
         
         
 
         //METODES-Exception
+        
+        
             //llegirChar
-        char valorChar = llegirChar("Introdueixi un sol cáracter");
+        
+        
+        char valorChar = Entrada.llegirChar("Introdueixi un sol cáracter");
         System.out.println("Valor del carácter " +valorChar);
             
             //llegirString
         
-        String valorString = llegirString("Introdueixi una cadena de carácters");
+        String valorString =Entrada.llegirString("Introdueixi una cadena de carácters");
         System.out.println("Valor de la cadena " +valorString);
             
             //llegirBoolean
         
-        boolean valorBoolean = llegirSiNo("Introdueixi S (true) o N (false)");
+        boolean valorBoolean =Entrada.llegirSiNo("Introdueixi S (true) o N (false)");
         System.out.println("Valor de boolean " +valorBoolean);
             
     }
+    
+  
+
+}
+
     
     
     
