@@ -2,175 +2,88 @@ package n2exercici1;
 
 // package casa package Backend.Sprint1.S1_02.n1exercici1;
 
-
-
 import java.util.Scanner;
 
 public class App {
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args){
 
-        menu();
+        Venda vendas = new Venda();
 
+        Producte producte1 = new Producte("Movil", 50);
+        Producte producte2 = new Producte("tele", 150);
+        Producte producte3 = new Producte("ordinador", 500);
+        
+
+//        vendas.afegirProductes(producte1);
+//        vendas.afegirProductes(producte2);
+//        vendas.afegirProductes(producte3);
+        
+
+        System.out.println("0- Sortir");
+        System.out.println("1- afegir producte");
+        System.out.println("2- buscar un producte a la llista");
+        System.out.println("3- calcular total");
+
+        int opcioUsuari = demanarDadesInt("Introdueixi una opció");
+
+        switch (opcioUsuari) {
+
+            case 1:
+
+                System.out.println("Opció 1- Afegir producte");
+                vendas.afegirProductes(producte1);
+
+                break;
+
+            case 2:
+
+                System.out.println("Opció 2- buscar un producte");
+                
+                vendas.buscarProducte("llet");
+                
+               
+                
+
+                break;
+
+            case 3:
+
+                System.out.println("Opció 3- Calcular el total dels productes");
+
+                try {
+
+                    vendas.calcularTotal();
+
+                } catch (Exception e) {
+
+                    System.out.println(e.getMessage());
+
+                }
+
+                break;
+
+        }
+
+        /*
+        Dins del try validem el metode on pot haveri el error,
+        si es aixi, el captura guardantlo a una variable, on podem
+        mostrar el missatge que hem escrit al metode i crear el error 
+        amb printStackTrace
+        
+         */
     }
+    
+    
+    
 
-    //METODES
-    //MENU
-    static void menu() throws Exception {
-
-        int opcioUsuari;
-
-        double totalPreu;
-        double preu;
-        int posicio;
-
-        String nom;
-
-        Venda venda = new Venda();
-        Producte producte;
-
-        do {
-
-            System.out.println("0- Sortir del programa");
-            System.out.println("1- Crear i afegir productes");
-            System.out.println("2- Comprobar llista del carro i preu total");
-            System.out.println("3- Buscar un producte");
-            System.out.print("Opcio: ");
-
-            opcioUsuari = demanarDadesInt("Introdueixi una opcio");
-
-            switch (opcioUsuari) {
-
-                case 1:
-
-                    System.out.println("Opció 1 - Crear i afegir productes");
-
-                    nom = demanarDadesText("Introdueixi nom del producte");
-                    preu = demanarDadesDecimal("Introdueixi un preu");
-
-                    producte = crearProducte(nom, preu);
-                    venda.afegirProductes(producte);
-
-                    break;
-
-                case 2:
-
-                    System.out.println("Opció 2- Comprobar llista del carro i preu total");
-
-                    if (venda.getLlistaProductEs().size() != 0) {
-
-                        venda.mostrarProductes();
-                    }
-
-                    try {
-
-                        totalPreu = venda.calcularTotal();
-                        System.out.println("El preu total de la llista és de " + totalPreu);
-
-                    } catch (Exception e) {
-
-                        e.printStackTrace();
-                    }
-
-                    break;
-
-                case 3:
-
-                    System.out.println("Opció 3- Buscar producte");
-
-                    nom = demanarDadesText("Introdueix el nom del producte a buscar");
-                    posicio = venda.buscarProducte(nom);
-
-                    do {
-
-                        if (posicio != -1) {
-
-                            venda.mostrarProducte(nom);
-
-                        }
-
-                    } while (posicio == -1);
-
-                    break;
-
-            } //FINAL SWITCH
-
-        } while (opcioUsuari != 0);
-
-    } //FINAL MENU
-
-    //FUNCIONALITATS PROGRAMA
-    static Producte crearProducte(String nom, double preu) {
-
-        Producte producte = new Producte(nom, preu);
-
-        return producte;
-    }
-
-    //DADES USUARI
-    static double demanarDadesDecimal(String texto) throws Exception {
+    static int demanarDadesInt(String texto){
 
         Scanner input = new Scanner(System.in);
-        double numUsuari = 0;
-        boolean capturaError = false;
-
-        do {
-
-            try {
-
-                System.out.println(texto);
-                numUsuari = input.nextDouble();
-                capturaError = false;
-
-            } catch (Exception e) {
-
-                System.out.println("Dade incorrecte, has d'introduir un preu");
-                input.next();
-                capturaError = true;
-            }
-
-        } while (capturaError == true);
-
+        
+        int numUsuari;
+        numUsuari = input.nextInt();
         return numUsuari;
-    }
-
-    static int demanarDadesInt(String texto) throws Exception {
-
-        Scanner input = new Scanner(System.in);
-        int numUsuari = 0;
-        boolean capturaError = false;
-
-        do {
-
-            try {
-
-                System.out.println(texto);
-                numUsuari = input.nextInt();
-                capturaError = false;
-
-            } catch (Exception e) {
-
-                System.out.println("Dade incorrecte, has d'introduir un número");
-                input.next();
-                capturaError = true;
-            }
-
-        } while (capturaError == true);
-
-        return numUsuari;
-    }
-
-    static String demanarDadesText(String texto) {
-
-        Scanner input = new Scanner(System.in);
-
-        String textUsuari;
-
-        System.out.println(texto);
-        textUsuari = input.nextLine();
-
-        return textUsuari;
-
     }
 
 }
