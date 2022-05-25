@@ -64,6 +64,7 @@ public class Venda {
              
                 indexProducte = i;
                 coincidencia = true;   
+                System.out.println("El producte existeix a la llista");
             }
             
             i++;       
@@ -89,6 +90,7 @@ public class Venda {
     }
 
 
+    
     
     /*Metode on volem comprobar si es genera un error o no,
     dins de la condicio, en contes de imprimir un simple missatge, el que fem
