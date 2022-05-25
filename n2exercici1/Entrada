@@ -222,7 +222,7 @@ public class Entrada extends Exception  {
                     
                     retorno = true;
                     
-                } else if (lletra.equals("s") || lletra.equals("S")){
+                } else if (lletra.equals("n") || lletra.equals("N")){
                     
                     retorno = false;
                 }
