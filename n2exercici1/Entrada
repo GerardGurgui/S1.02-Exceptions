@@ -6,19 +6,14 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 
-package S1_02.n2exercici1;
-
-
-
-
 public class Entrada extends Exception  {
     
-    
+    static Scanner input = new Scanner(System.in);
     
     //METODES-InputMismatchException:
         //BYTE
     
-    public static byte llegirByte(String missatge) throws Entrada{
+    public static byte llegirByte(String missatge){
         
         byte valor = 0;
         boolean capturaError = false;
@@ -28,13 +23,13 @@ public class Entrada extends Exception  {
             try {
                 
                 System.out.println(missatge);
-                valor = App.input.nextByte();
+                valor = input.nextByte();
                 capturaError = false;
                 
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 
                 System.out.println("Error de format, has d'introduir un número byte");
-                App.input.next(); //evitar bucle infinit
+                input.next(); //evitar bucle infinit
                 capturaError = true;
                 
             }
@@ -48,7 +43,7 @@ public class Entrada extends Exception  {
     
         //INT
     
-    public static int llegirInt(String missatge) throws Entrada {
+    public static int llegirInt(String missatge){
         
         int valor = 0;
         boolean capturaError = false;
@@ -58,13 +53,13 @@ public class Entrada extends Exception  {
             try {
                 
                 System.out.println(missatge);
-                valor =App.input.nextInt();
+                valor = input.nextInt();
                 capturaError = false;
                 
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 
                 System.out.println("Error de format, has d'introduir un número enter");
-                App.input.next(); //evitar bucle infinit
+                input.next(); //evitar bucle infinit
                 capturaError = true;
                 
             }
@@ -89,13 +84,13 @@ public class Entrada extends Exception  {
             try {
                 
                 System.out.println(missatge);
-                valor = App.input.nextFloat();
+                valor = input.nextFloat();
                 capturaError = false;
                 
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 
                 System.out.println("Error de format, has d'introduir un número amb coma (flotant)");
-                App.input.next(); //evitar bucle infinit
+                input.next(); //evitar bucle infinit
                 capturaError = true;
                 
             }
@@ -110,7 +105,7 @@ public class Entrada extends Exception  {
     
         //DOUBLE
 
-    public static double llegirDouble(String missatge) throws Entrada{
+    public static double llegirDouble(String missatge){
 
         
         double valor = 0;
@@ -121,19 +116,19 @@ public class Entrada extends Exception  {
             try {
                 
                 System.out.println(missatge);
-                valor =  App.input.nextDouble();
+                valor =  input.nextDouble();
                 capturaError = false;
                 
                 
-            } catch (Exception e) {
+            } catch (InputMismatchException e) {
                 
                 System.out.println("Error de format, has d'introduir un número decimal");
-                App.input.next(); //evitar bucle infinit
+                input.next(); //evitar bucle infinit
                 capturaError = true;
                 
             }
             
-            App.input.nextLine();
+            input.nextLine();
               
         } while (capturaError == true);
         
@@ -147,50 +142,44 @@ public class Entrada extends Exception  {
     //METODES-Exception
         //Char
     
-    public static char llegirChar(String missatge) throws Entrada{
+    public static char llegirChar(String missatge){
         
-        String cadena = "";
-        int totalCadena = 0;
-        char cadenaChar = ' ';
+        
+        char caracter = ' ';
+        boolean capturaError = false;
         
         do {            
             
             try {
                 
                 System.out.println(missatge);
-                cadena = App.input.nextLine();   //Recollim les dades amb String per poder fer servir el length
-                totalCadena = cadena.length();   //Obtenim el total de la cadena
-               
-                if(totalCadena != 1){
-                    
-                    throw new Entrada(); 
-                }
-                
-                    
+                caracter = input.next().charAt(0); //Recollim les dades amb String per poder fer servir el length
+                capturaError = false;
+
+                   
             }catch (Exception e) {
                 
-                System.out.println("Error de format, has d'introduir un sol caracter");
-                 
+                System.out.println("Error de format, has d'introduir un sol caracter");  
+                capturaError = true; 
                 
             }
             
-            cadenaChar = cadena.charAt(0);
+            input.nextLine(); //Clean buffer
             
-            
-        } while (totalCadena != 1);
+        } while (capturaError == true);
         
-       return cadenaChar;
+       return caracter;
         
     }
     
     
         //String
     
-    public static String llegirString(String missatge) throws Entrada{
+    public static String llegirString(String missatge){
 
         
         String cadena = "";
-        int totalCadena = 0;
+        boolean capturaError = false;
         
         
         do {            
@@ -198,23 +187,17 @@ public class Entrada extends Exception  {
             try {
                 
                 System.out.println(missatge);
-                cadena = App.input.nextLine();   //Recollim les dades amb String per poder fer servir el length
-                totalCadena = cadena.length();   //Obtenim el total de la cadena
-               
-                //Evaluem que si la cadena es més gran de 1 caracter, ens crei el error
-                if(totalCadena <= 1){
-                    
-                    throw new Entrada(); 
-                }
+                cadena = input.nextLine();   //Recollim les dades amb String per poder fer servir el length
+                capturaError = false;
                 
             }catch (Exception e) {
                 
-                System.out.println("Error de format, has d'introduir un sol caracter");
-                
+                System.out.println("Error de format, has d'introduir un cadena de caracters");
+                capturaError = true;
             }
             
             
-        } while (totalCadena <= 1);
+        } while (capturaError == true);
         
        return cadena;
         
@@ -222,9 +205,9 @@ public class Entrada extends Exception  {
     
         //Boolean
     
-    public static boolean llegirSiNo(String missatge) throws Entrada{
+    public static boolean llegirSiNo(String missatge){
         
-        String valor = "";
+        String lletra = "";
         boolean retorno = false;
         
         do {            
@@ -232,37 +215,30 @@ public class Entrada extends Exception  {
             try {
                 
                 System.out.println(missatge);
-                valor =App.input.nextLine();
+                lletra = input.nextLine();
                 
-             if(!(valor.equals("s") || valor.equals("n"))){
-                 
-                throw new Entrada();
-                 
-             }
-            
-             
+                
+                if (lletra.equals("s") || lletra.equals("S")) {
+                    
+                    retorno = true;
+                    
+                } else if (lletra.equals("s") || lletra.equals("S")){
+                    
+                    retorno = false;
+                }
+                
             } catch (Exception e) {
                 
                 System.out.println("Dada incorrecte, has d'introduir o S o N");
                 
             }
             
-        } while (!(valor.equals("s") || valor.equals("n")));
+        } while (!(lletra.equals("s") || lletra.equals("S") || lletra.equals("n") || lletra.equals("N")));
         
         
-            if (valor.equals("s")) {
-
-                retorno = true;
-
-            } else if (valor.equals("n")){
-
-                retorno = false;
-            }
-       
+         return retorno;
         
-        
-        return retorno;
-        
+      
     }
     
     
