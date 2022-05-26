@@ -8,7 +8,7 @@ public class App {
 
     public static void main(String[] args) {
 
-        Venda vendas = new Venda();
+        Venda venda = new Venda();
         
         String nomProducte;
         double preuTotal = 0;
@@ -19,6 +19,13 @@ public class App {
         Producte producte1 = new Producte("movil", 50);
         Producte producte2 = new Producte("tele", 150);
         Producte producte3 = new Producte("ordinador", 500);
+        
+        
+        venda.afegirProductes(producte1);
+        venda.afegirProductes(producte2);
+        venda.afegirProductes(producte3);
+        
+        System.out.println(venda.getLlistaProductes().size());
         
         
     do {            
@@ -35,9 +42,9 @@ public class App {
             case 1:
 
                 System.out.println("Opció 1- Afegir producte");
-                vendas.afegirProductes(producte1);
-                vendas.afegirProductes(producte2);
-                vendas.afegirProductes(producte3);
+                venda.afegirProductes(producte1);
+                venda.afegirProductes(producte2);
+                venda.afegirProductes(producte3);
                 System.out.println("Productes afegits correctament");
                 
                 break;
@@ -46,9 +53,34 @@ public class App {
 
                 System.out.println("Opció 2- buscar un producte");
                 nomProducte = demanarDadesText("Introdueixi el nom del producte a buscar");
-                vendas.buscarProducte(nomProducte);
+                
+                
+                /*
+                Si per exemple volem generar un error del tipus ArrayIndexOutOfBoundsException, sería
+                suficient amb recorrer la llista on li indiquem que les iteracions siguin superios o IGUALS al tamany d'aquest array,
+                ja que estem intentant accedir a un posició igual al tamany de la llista, i el primer element sempre es guarda a la 
+                posició 0, per tant ens donará el error, per que intentem accedir a una posició que no existeix
+                
+                */
+                
+                int i = 0;
+                boolean coincidencia = false;
+
+                while(i <= venda.getLlistaProductes().size() && coincidencia == false){
+
+
+                     if (nomProducte.equals(venda.getLlistaProductes().get(i).getNom())) {
+
+                        
+                        coincidencia = true;   
+                    }
+
+                     i++;       
+                }
+               
                 
                 break;
+                
 
             case 3:
 
@@ -62,7 +94,7 @@ public class App {
                 
                 try {
 
-                   preuTotal = vendas.calcularTotal();
+                   preuTotal = venda.calcularTotal();
                     System.out.println("Preu total de la llista és de " +preuTotal);
                     
                 } catch (Exception e) {
@@ -78,6 +110,7 @@ public class App {
     } while (opcioUsuari != 0);
         
 }
+    
     
     
     
