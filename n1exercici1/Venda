@@ -20,14 +20,14 @@ public class Venda {
 
 
     //GETTERS SETTERS
-    public ArrayList<Producte> getLlistaProductEs() {
+    public ArrayList<Producte> getLlistaProductes() {
         return llistaProductes;
     }
 
 
 
-    public void setLlistaProductEs(ArrayList<Producte> llistaProductEs) {
-        this.llistaProductes = llistaProductEs;
+    public void setLlistaProductEs(ArrayList<Producte> llistaProductes) {
+        this.llistaProductes = llistaProductes;
     }
 
 
@@ -50,36 +50,7 @@ public class Venda {
 
     //METODES
     
-    public int buscarProducte (String nom)throws ArrayIndexOutOfBoundsException{
-                                                 
-        
-        int i = 0;
-        int indexProducte = -1;
-        boolean coincidencia = false;
-               
-        while(i<llistaProductes.size() && coincidencia == false){
-            
-            
-             if (nom.equals(llistaProductes.get(i).getNom())) {
-             
-                indexProducte = i;
-                coincidencia = true;   
-                System.out.println("El producte existeix a la llista");
-            }
-            
-            i++;       
-        }  
-        
-        if (indexProducte == -1) {
-            
-            throw new ArrayIndexOutOfBoundsException("El producte no existeix");
-            
-        }
-        
-        
-        return indexProducte;
-    }
-
+    
     
     public void afegirProductes(Producte producte) {
         
@@ -91,12 +62,11 @@ public class Venda {
 
 
     
-    
     /*Metode on volem comprobar si es genera un error o no,
-    dins de la condicio, en contes de imprimir un simple missatge, el que fem
+    dins de la condició, en contes de imprimir un simple missatge, el que fem
     es crear un error del tipu que hem definit (amb el nom de la classe) i que 
     hereda de clase java Exception.
-    important tambe despres dels parentesis del metode indicar-li que hi ha la posibilitat
+    Després dels parentesis del metode indicar-li que hi ha la posibilitat
     de que es produeixi un error (throws)
     */
     
