@@ -194,7 +194,7 @@ public class Entrada {
             
             input.next();
             
-        } while (capturaError == true);
+        } while (!encontrado);
         
        return cadena;
         
